@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Riyousya index{% endblock %}
+
+{% block body %}
+    <h1>Riyousya index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FamilyName</th>
+                <th>FirstName</th>
+                <th>BirthYear</th>
+                <th>BirthMonth</th>
+                <th>BirthDay</th>
+                <th>Tel</th>
+                <th>Address</th>
+                <th>Sns</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for riyousya in riyousyas %}
+            <tr>
+                <td>{{ riyousya.id }}</td>
+                <td>{{ riyousya.familyName }}</td>
+                <td>{{ riyousya.firstName }}</td>
+                <td>{{ riyousya.birthYear }}</td>
+                <td>{{ riyousya.birthMonth }}</td>
+                <td>{{ riyousya.birthDay }}</td>
+                <td>{{ riyousya.tel }}</td>
+                <td>{{ riyousya.address }}</td>
+                <td>{{ riyousya.sns }}</td>
+                <td>{{ riyousya.createdAt ? riyousya.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ riyousya.updatedAt ? riyousya.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('riyousya_show', {'id': riyousya.id}) }}">show</a>
+                    <a href="{{ path('riyousya_edit', {'id': riyousya.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('riyousya_new') }}">Create new</a>
+{% endblock %}

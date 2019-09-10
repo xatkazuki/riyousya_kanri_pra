@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Riyousya{% endblock %}
+
+{% block body %}
+    <h1>Create new Riyousya</h1>
+
+    {{ include('riyousya/_form.html.twig') }}
+
+    <a href="{{ path('riyousya_index') }}">back to list</a>
+{% endblock %}

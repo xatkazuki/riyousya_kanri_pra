@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Riyousya{% endblock %}
+
+{% block body %}
+    <h1>Riyousya</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ riyousya.id }}</td>
+            </tr>
+            <tr>
+                <th>FamilyName</th>
+                <td>{{ riyousya.familyName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ riyousya.firstName }}</td>
+            </tr>
+            <tr>
+                <th>BirthYear</th>
+                <td>{{ riyousya.birthYear }}</td>
+            </tr>
+            <tr>
+                <th>BirthMonth</th>
+                <td>{{ riyousya.birthMonth }}</td>
+            </tr>
+            <tr>
+                <th>BirthDay</th>
+                <td>{{ riyousya.birthDay }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ riyousya.tel }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ riyousya.address }}</td>
+            </tr>
+            <tr>
+                <th>Sns</th>
+                <td>{{ riyousya.sns }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ riyousya.createdAt ? riyousya.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ riyousya.updatedAt ? riyousya.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('riyousya_index') }}">back to list</a>
+
+    <a href="{{ path('riyousya_edit', {'id': riyousya.id}) }}">edit</a>
+
+    {{ include('riyousya/_delete_form.html.twig') }}
+{% endblock %}
