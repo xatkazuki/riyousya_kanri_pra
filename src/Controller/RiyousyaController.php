@@ -30,7 +30,7 @@ class RiyousyaController extends AbstractController
         $entityManager=$this->getDoctrine()->getManager();
 //        $entityManager->persist($riyousya);
         $entityManager->flush();
-        return $this->render(,[
+        return $this->render([
             'message' => 'Welcome to your new controller!',
             'path' => 'src/Controller/RiyousyaController.php',
         ]);
