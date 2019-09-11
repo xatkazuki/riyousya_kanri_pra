@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Syukuhaku index{% endblock %}
+
+{% block body %}
+    <h1>Syukuhaku index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FamillyName</th>
+                <th>FirstName</th>
+                <th>Check_in</th>
+                <th>Check_out</th>
+                <th>Number_of_guests</th>
+                <th>Type</th>
+                <th>Syukuhaku_option</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for syukuhaku in syukuhakus %}
+            <tr>
+                <td>{{ syukuhaku.id }}</td>
+                <td>{{ syukuhaku.famillyName }}</td>
+                <td>{{ syukuhaku.firstName }}</td>
+                <td>{{ syukuhaku.checkIn ? syukuhaku.checkIn|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ syukuhaku.checkOut ? syukuhaku.checkOut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ syukuhaku.numberOfGuests }}</td>
+                <td>{{ syukuhaku.type }}</td>
+                <td>{{ syukuhaku.syukuhakuOption }}</td>
+                <td>{{ syukuhaku.comment }}</td>
+                <td>
+                    <a href="{{ path('syukuhaku_show', {'id': syukuhaku.id}) }}">show</a>
+                    <a href="{{ path('syukuhaku_edit', {'id': syukuhaku.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('syukuhaku_new') }}">Create new</a>
+{% endblock %}

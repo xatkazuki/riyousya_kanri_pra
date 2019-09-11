@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Syukuhaku{% endblock %}
+
+{% block body %}
+    <h1>Syukuhaku</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ syukuhaku.id }}</td>
+            </tr>
+            <tr>
+                <th>FamillyName</th>
+                <td>{{ syukuhaku.famillyName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ syukuhaku.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Check_in</th>
+                <td>{{ syukuhaku.checkIn ? syukuhaku.checkIn|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Check_out</th>
+                <td>{{ syukuhaku.checkOut ? syukuhaku.checkOut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Number_of_guests</th>
+                <td>{{ syukuhaku.numberOfGuests }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ syukuhaku.type }}</td>
+            </tr>
+            <tr>
+                <th>Syukuhaku_option</th>
+                <td>{{ syukuhaku.syukuhakuOption }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ syukuhaku.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('syukuhaku_index') }}">back to list</a>
+
+    <a href="{{ path('syukuhaku_edit', {'id': syukuhaku.id}) }}">edit</a>
+
+    {{ include('syukuhaku/_delete_form.html.twig') }}
+{% endblock %}
