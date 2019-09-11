@@ -6,6 +6,7 @@ use App\Entity\Riyousya;
 use App\Form\RiyousyaType;
 use App\Repository\RiyousyaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,6 +32,10 @@ class RiyousyaController extends AbstractController
     public function new(Request $request): Response
     {
         $riyousya = new Riyousya();
+
+        $riyousya->setCreatedAt(new \DateTime());
+        $riyousya->setUpdatedAt(new \DateTime());
+
         $form = $this->createForm(RiyousyaType::class, $riyousya);
         $form->handleRequest($request);
 

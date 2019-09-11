@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_errors((form)) }}
+ {#{{ form_widget(form) }}#}
+    {{ form_row(form.familyName) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.birthYear) }}
+    {{ form_row(form.birthMonth) }}
+    {{ form_row(form.birthDay) }}
+    {{ form_row(form.tel) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.sns) }}
+
+
     <button class="btn">{{ button_label|default('Save') }}</button>
+<div style="display: none;">
+{{ form_rest(form) }}
+</div>
 {{ form_end(form) }}
