@@ -20,8 +20,13 @@ class SyukuhakuController extends AbstractController
      */
     public function index(SyukuhakuRepository $syukuhakuRepository): Response
     {
+
+        ;
         return $this->render('syukuhaku/index.html.twig', [
-            'syukuhakus' => $syukuhakuRepository->findAll(),
+            'syukuhakus' => $syukuhakuRepository->findBy(
+                array('type' => array('a','b')),
+                array('check_in'=>'ASC')
+            ),
         ]);
     }
 
