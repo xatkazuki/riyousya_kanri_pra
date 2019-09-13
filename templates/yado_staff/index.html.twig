@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello YadoStaffController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/src/Controller/YadoStaffController.php'|file_link(0) }}">src/Controller/YadoStaffController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/templates/yado_staff/index.html.twig'|file_link(0) }}">templates/yado_staff/index.html.twig</a></code></li>
+    </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FamillyName</th>
+            <th>FirstName</th>
+            <th>契約開始日</th>
+            <th>契約終了日</th>
+            <th>契約区分</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for yadostaff in yadostaffs %}
+            <tr>
+                <td>{{ yadostaff.id }}</td>
+                <td>{{ yadostaff.famillyName }}</td>
+                <td>{{ yadostaff.firstNmae }}</td>
+                <td>{{ yadostaff.nyuusyaAt ? yadostaff.nyuusyaAt|date('Y-m-d') : '' }}</td>
+                <td>{{ yadostaff.taisyaAt ? yadostaff.taisyaAt|date('Y-m-d') : '' }}</td>
+                <td>{{ yadostaff.position }}</td>
+                {#<td>#}
+                {#<a href="{{ path('yadostaff_show', {'id': yadostaff.id}) }}">show</a>#}
+                {#<a href="{{ path('yadostaff_edit', {'id': yadostaff.id}) }}">edit</a>#}
+                {#</td>#}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
