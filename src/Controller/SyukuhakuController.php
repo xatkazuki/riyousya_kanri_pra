@@ -21,7 +21,6 @@ class SyukuhakuController extends AbstractController
     public function index(SyukuhakuRepository $syukuhakuRepository): Response
     {
 
-        ;
         return $this->render('syukuhaku/index.html.twig', [
             'syukuhakus' => $syukuhakuRepository->findBy(
                 array('type' => array('a','b')),
