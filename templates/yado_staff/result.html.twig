@@ -14,25 +14,8 @@
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/src/Controller/YadoStaffController.php'|file_link(0) }}">src/Controller/YadoStaffController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/templates/yado_staff/index.html.twig'|file_link(0) }}">templates/yado_staff/index.html.twig</a></code></li>
+        <li>Your template at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/templates/yado_staff/result.html.twig'|file_link(0) }}">templates/yado_staff/result.html.twig</a></code></li>
     </ul>
-
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-        {{ form_start(form) }}
-        {{ form_errors((form)) }}
-        {{ form_row(form.famillyName) }}
-        {{ form_row(form.firstNmae) }}
-        {{ form_row(form.position) }}
-        {{ form_row(form.nyuusya_at) }}
-        {{ form_row(form.taisya_at) }}
-
-        <button class="btn">{{ button_label|default('Serch') }}</button>
-        <div style="display: none;">
-            {{ form_rest(form) }}
-        </div>
-        {{ form_end(form) }}
-    </div>
 
     <table class="table">
         <thead>
@@ -66,5 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <a href="{{ path('yado_staff')}}">一覧へ戻る</a>
+
 </div>
 {% endblock %}

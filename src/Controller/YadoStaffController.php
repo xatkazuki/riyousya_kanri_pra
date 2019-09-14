@@ -11,22 +11,66 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/yado/staff", methods={"GET"})
+ * @Route("/yado/staff", methods={"GET","POST"})
  */
 class YadoStaffController extends AbstractController
 {
     /**
-     * @Route("/", name="yado_staff")
+     * @Route("/", name="yado_staff",methods={"GET","POST"})
      */
-    public function index(YadoStaffRepository $yadoStaffRepository)
+    public function index(Request $request ,YadoStaffRepository $yadoStaffRepository)
     {
+        $yadostaff = new YadoStaff();
 
+        $form = $this->createForm(YadoStaffType::class, $yadostaff);
+        $form->handleRequest($request);
+
+        $staff_name = ($form->get('firstNmae')->getData());
+
+        if($form->isSubmitted()  && $form->isValid()){
+
+        return $this->render('yado_staff/result.html.twig'
+            , [
+            'controller_name' => 'YadoStaffController',
+            'yadostaffs' => $yadoStaffRepository->findBy([
+                'firstNmae' => $staff_name
+            ]),
+            'form' => $form->createView()
+        ])
+            ;
+        }
         return $this->render('yado_staff/index.html.twig', [
             'controller_name' => 'YadoStaffController',
             'yadostaffs' => $yadoStaffRepository->findAll(),
+            'form' => $form->createView()
+            ]
+        );
+    }
 
+    /**
+     * @Route("/result", name="yado_staff_result",methods={"GET","POST"})
+     */
+    public function serch_result(Request $request ,YadoStaffRepository $yadoStaffRepository)
+    {
+
+        $yadostaff = new YadoStaff();
+
+        $form = $this->createForm(YadoStaffType::class, $yadostaff);
+        $form->handleRequest($request);
+
+        $staff_name=($form->get('firstNmae')->getData());
+
+
+        return $this->render('yado_staff/result.html.twig', [
+            'controller_name' => 'YadoStaffController',
+//                        'yadostaffs' => $yadoStaffRepository->findAll(),
+            'yadostaffs' => $yadoStaffRepository->findBy([
+                'firstNmae'=> $staff_name
+            ]),
+            'form' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/{staff_name}", name="yado_staff_name_data")
      */
@@ -51,8 +95,6 @@ class YadoStaffController extends AbstractController
             'controller_name' => 'YadoStaffController',
             'yadostaffs' => $yadoStaffRepository->findBy([
                 'id' =>$id,
-
-
             ]),
 
         ]);
