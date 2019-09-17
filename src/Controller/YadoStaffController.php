@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Entity\YadoStaff;
 use App\Form\YadoStaffType;
+use App\Form\YadoStaffSerchType;
 use App\Repository\YadoStaffRepository;
+use PhpParser\Node\Expr\Cast\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\MakerBundle\Str;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,7 +26,7 @@ class YadoStaffController extends AbstractController
     {
         $yadostaff = new YadoStaff();
 
-        $form = $this->createForm(YadoStaffType::class, $yadostaff);
+        $form = $this->createForm(YadoStaffSerchType::class, $yadostaff);
         $form->handleRequest($request);
 
         $staff_name = ($form->get('firstNmae')->getData());
@@ -72,31 +76,20 @@ class YadoStaffController extends AbstractController
     }
 
     /**
-     * @Route("/{staff_name}", name="yado_staff_name_data")
+     * @Route("/{id}", name="yado_staff_data", requirements={"id"="\d+"})
      */
-    public function person_name_data(YadoStaffRepository $yadoStaffRepository, $staff_name)
+    public function person_data(Request $request, YadoStaffRepository $yadoStaffRepository, $id)
     {
+        $yadostaff = new YadoStaff();
 
-        return $this->render('yado_staff/index.html.twig', [
-            'controller_name' => 'YadoStaffController',
-            'yadostaffs' => $yadoStaffRepository->findBy([
-                'firstNmae'=>$staff_name
-            ]),
-
-        ]);
-    }
-    /**
-     * @Route("/{staff_name}/{id}", name="yado_staff_data", requirements={"id"="\d+"})
-     */
-    public function person_data(YadoStaffRepository $yadoStaffRepository, $staff_name, $id)
-    {
-
-        return $this->render('yado_staff/index.html.twig', [
+        $form = $this->createForm(YadoStaffType::class, $yadostaff);
+        $form->handleRequest($request);
+        return $this->render('yado_staff/result.html.twig', [
             'controller_name' => 'YadoStaffController',
             'yadostaffs' => $yadoStaffRepository->findBy([
                 'id' =>$id,
             ]),
-
+            'form' => $form->createView()
         ]);
     }
     /**

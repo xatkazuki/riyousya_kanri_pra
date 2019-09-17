@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class YadoStaffType extends AbstractType
+class YadoStaffSerchType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -24,7 +24,8 @@ class YadoStaffType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('famillyName')
+            ->add('famillyName',null,[
+                'required' => false,])
             ->add('firstNmae')
             ->add('position',ChoiceType::class,[
                 'choices' => [
