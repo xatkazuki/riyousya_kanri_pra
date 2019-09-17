@@ -50,10 +50,10 @@
                 <td>{{ yadostaff.nyuusyaAt ? yadostaff.nyuusyaAt|date('Y-m-d') : '' }}</td>
                 <td>{{ yadostaff.taisyaAt ? yadostaff.taisyaAt|date('Y-m-d') : '' }}</td>
                 <td>{{ yadostaff.position }}</td>
-                {#<td>#}
+                <td>
                 {#<a href="{{ path('yadostaff_show', {'id': yadostaff.id}) }}">show</a>#}
-                {#<a href="{{ path('yadostaff_edit', {'id': yadostaff.id}) }}">edit</a>#}
-                {#</td>#}
+                <a href="{{ path('staff_edit', {'id': yadostaff.id}) }}">edit</a>
+                </td>
             </tr>
         {% else %}
             <tr>

@@ -8,7 +8,7 @@ use App\Form\YadoStaffSerchType;
 use App\Repository\YadoStaffRepository;
 use PhpParser\Node\Expr\Cast\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\MakerBundle\Str;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -127,4 +127,49 @@ class YadoStaffController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/{id}/edit", name="staff_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, YadoStaff $yado_staff, YadoStaffRepository $yadoStaffRepository): Response
+    {
+
+        $form = $this->createForm(YadoStaffType::class, $yado_staff);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('yado_staff');
+        }
+
+        return $this->render('yado_staff/edit.html.twig', [
+            'yadostaffs' =>$yado_staff,
+            'form' => $form->createView(),
+
+        ]);
+    }
+
+//    /**
+//     * @Route("/{id}", name="staff_delete", methods={"DELETE"})
+//     */
+//    public function delete(Request $request, YadoStaff $yado_staff, $id): Response
+//    {
+//
+//        $form = $this->createForm(YadoStaffType::class, $yado_staff);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $this->getDoctrine()->getManager()->remove($id);
+//            $this->getDoctrine()->getManager()->flush();
+//            return $this->redirectToRoute('yado_staff');
+//        }
+//
+//
+//        return $this->render('yado_staff/edit.html.twig', [
+//            'yadostaffs' =>$yado_staff,
+//            'form' => $form->createView(),
+//
+//        ]);
+//    }
 }

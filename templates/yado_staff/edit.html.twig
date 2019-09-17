@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit YadoStaff{% endblock %}
+
+{% block body %}
+    <h1>Edit YadoStaff</h1>
+    <div class="example-wrapper">
+        {#<h1>Hello {{ controller_name }}! ✅</h1>#}
+        {{ form_start(form) }}
+        {{ form_errors((form)) }}
+        {#{{ form_widget(form) }}#}
+
+        {{ form_row(form.famillyName) }}
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.position) }}
+        {{ form_row(form.nyuusya_at) }}
+        {{ form_row(form.taisya_at) }}
+
+        <button class="btn">{{ button_label|default('Update') }}</button>
+        <div style="display: none;">
+            {{ form_rest(form) }}
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
