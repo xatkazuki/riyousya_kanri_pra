@@ -11,14 +11,18 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/src/Controller/YadoStaffController.php'|file_link(0) }}">src/Controller/YadoStaffController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/templates/yado_staff/index.html.twig'|file_link(0) }}">templates/yado_staff/index.html.twig</a></code></li>
-    </ul>
-
+    {#This friendly message is coming from:#}
+    {#<ul>#}
+        {#<li>Your controller at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/src/Controller/YadoStaffController.php'|file_link(0) }}">src/Controller/YadoStaffController.php</a></code></li>#}
+        {#<li>Your template at <code><a href="{{ '/Users/xearts/MySymfonyProjectsPractice/riyousya_kanri/templates/yado_staff/index.html.twig'|file_link(0) }}">templates/yado_staff/index.html.twig</a></code></li>#}
+    {#</ul>#}
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
     <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+        {#<h1>Hello {{ controller_name }}! ✅</h1>#}
         {{ form_start(form) }}
         {{ form_errors((form)) }}
         {{ form_row(form.firstName) }}

@@ -35,7 +35,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
     }
-
     public function supports(Request $request)
     {
         return 'app_login' === $request->attributes->get('_route')
@@ -86,7 +85,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+//        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // redirect to some "app_homepage" route - of wherever you want
+        return new RedirectResponse($this->urlGenerator->generate('yado_staff'));
+
     }
 
     protected function getLoginUrl()
