@@ -21,7 +21,7 @@
         <h1>Hello {{ controller_name }}! ✅</h1>
         {{ form_start(form) }}
         {{ form_errors((form)) }}
-        {{ form_row(form.firstNmae) }}
+        {{ form_row(form.firstName) }}
 
         <button class="btn">{{ button_label|default('Serch') }}</button>
         <div style="display: none;">
@@ -46,7 +46,7 @@
             <tr>
                 <td>{{ yadostaff.id }}</td>
                 <td>{{ yadostaff.famillyName }}</td>
-                <td>{{ yadostaff.firstNmae }}</td>
+                <td>{{ yadostaff.firstName }}</td>
                 <td>{{ yadostaff.nyuusyaAt ? yadostaff.nyuusyaAt|date('Y-m-d') : '' }}</td>
                 <td>{{ yadostaff.taisyaAt ? yadostaff.taisyaAt|date('Y-m-d') : '' }}</td>
                 <td>{{ yadostaff.position }}</td>

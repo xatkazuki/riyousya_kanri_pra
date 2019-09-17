@@ -24,7 +24,7 @@ class YadoStaff
     /**
      * @ORM\Column(type="string", length=60)
      */
-    private $firstNmae;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -68,14 +68,14 @@ class YadoStaff
         return $this;
     }
 
-    public function getFirstNmae(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->firstNmae;
+        return $this->firstName;
     }
 
-    public function setFirstNmae(string $firstNmae): self
+    public function setFirstName(string $firstName): self
     {
-        $this->firstNmae = $firstNmae;
+        $this->firstName = $firstName;
 
         return $this;
     }

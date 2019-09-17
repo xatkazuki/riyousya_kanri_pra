@@ -26,7 +26,7 @@ class YadoStaffSerchType extends AbstractType
         $builder
             ->add('famillyName',null,[
                 'required' => false,])
-            ->add('firstNmae')
+            ->add('firstName')
             ->add('position',ChoiceType::class,[
                 'choices' => [
                     '正社員'=>'正社員',

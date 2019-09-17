@@ -29,7 +29,7 @@ class YadoStaffController extends AbstractController
         $form = $this->createForm(YadoStaffSerchType::class, $yadostaff);
         $form->handleRequest($request);
 
-        $staff_name = ($form->get('firstNmae')->getData());
+        $staff_name = ($form->get('firstName')->getData());
 
         if($form->isSubmitted()  && $form->isValid()){
 
@@ -37,7 +37,7 @@ class YadoStaffController extends AbstractController
             , [
             'controller_name' => 'YadoStaffController',
             'yadostaffs' => $yadoStaffRepository->findBy([
-                'firstNmae' => $staff_name
+                'firstName' => $staff_name
             ]),
             'form' => $form->createView()
         ])
@@ -62,19 +62,18 @@ class YadoStaffController extends AbstractController
         $form = $this->createForm(YadoStaffType::class, $yadostaff);
         $form->handleRequest($request);
 
-        $staff_name=($form->get('firstNmae')->getData());
+        $staff_name=($form->get('firstName')->getData());
 
 
         return $this->render('yado_staff/result.html.twig', [
             'controller_name' => 'YadoStaffController',
 //                        'yadostaffs' => $yadoStaffRepository->findAll(),
             'yadostaffs' => $yadoStaffRepository->findBy([
-                'firstNmae'=> $staff_name
+                'firstName'=> $staff_name
             ]),
             'form' => $form->createView()
         ]);
     }
-
     /**
      * @Route("/{id}", name="yado_staff_data", requirements={"id"="\d+"})
      */

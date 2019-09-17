@@ -25,7 +25,7 @@ class YadoStaffType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('famillyName')
-            ->add('firstNmae')
+            ->add('firstName')
             ->add('position',ChoiceType::class,[
                 'choices' => [
                     '正社員'=>'正社員',
