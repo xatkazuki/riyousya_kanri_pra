@@ -1,28 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit YadoStaff{% endblock %}
+{% block title %}Delete YadoStaff{% endblock %}
 
 {% block body %}
-    <h1>Edit YadoStaff</h1>
+    <h1>Delete YadoStaff</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FamillyName</th>
+            <th>FirstName</th>
+            <th>契約開始日</th>
+            <th>契約終了日</th>
+            <th>契約区分</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for yadostaff in yadostaffs %}
+            <tr>
+                <td>{{ yadostaff.id }}</td>
+                <td>{{ yadostaff.famillyName }}</td>
+                <td>{{ yadostaff.firstName }}</td>
+                <td>{{ yadostaff.nyuusyaAt ? yadostaff.nyuusyaAt|date('Y-m-d') : '' }}</td>
+                <td>{{ yadostaff.taisyaAt ? yadostaff.taisyaAt|date('Y-m-d') : '' }}</td>
+                <td>{{ yadostaff.position }}</td>
+                <td>
+                    {#<a href="{{ path('yadostaff_show', {'id': yadostaff.id}) }}">show</a>#}
+                    <a href="{{ path('staff_edit', {'id': yadostaff.id}) }}">edit</a>
+                    {#<a href="{{ path('staff_delete', {'id': yadostaff.id}) }}">delete</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     <div class="example-wrapper">
         {#<h1>Hello {{ controller_name }}! ✅</h1>#}
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'onsubmit': "return confirm('Are you sure you want to delete this item?');"}}) }}
         {{ form_errors((form)) }}
         {#{{ form_widget(form) }}#}
 
-        {{ form_row(form.famillyName) }}
-        {{ form_row(form.firstName) }}
-        {{ form_row(form.position) }}
-        {{ form_row(form.nyuusya_at) }}
-        {{ form_row(form.taisya_at) }}
+        {#{{ form_row(form.famillyName) }}#}
+        {#{{ form_row(form.firstName) }}#}
+        {#{{ form_row(form.position) }}#}
+        {#{{ form_row(form.nyuusya_at) }}#}
+        {#{{ form_row(form.taisya_at) }}#}
 
-        <button class="btn">{{ button_label|default('Update') }}</button>
-        <div>
-            <input type="submit" id="task_delete" name="staff[delete]" value="delete" class="btn-primary btn">
-        </div>
+        <button class="btn">{{ button_label|default('Delete') }}</button>
+        {#<div>#}
+            {#<input type="submit" id="task_delete" name="staff[delete]" value="delete" class="btn-primary btn">#}
+        {#</div>#}
         <div style="display: none;">
             {{ form_rest(form) }}
         </div>
+        {#<a href="{{ path('staff_edit') }}">edit</a>#}
         {{ form_end(form) }}
 
     </div>

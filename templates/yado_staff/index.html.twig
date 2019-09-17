@@ -53,6 +53,7 @@
                 <td>
                 {#<a href="{{ path('yadostaff_show', {'id': yadostaff.id}) }}">show</a>#}
                 <a href="{{ path('staff_edit', {'id': yadostaff.id}) }}">edit</a>
+                    <a href="{{ path('staff_delete', {'id': yadostaff.id}) }}">delete</a>
                 </td>
             </tr>
         {% else %}

@@ -129,7 +129,7 @@ class YadoStaffController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="staff_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="staff_edit",requirements={"id"="\d+"} ,methods={"GET","POST"})
      */
     public function edit(Request $request, YadoStaff $yado_staff, YadoStaffRepository $yadoStaffRepository): Response
     {
@@ -150,26 +150,28 @@ class YadoStaffController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{id}", name="staff_delete", methods={"DELETE"})
-//     */
-//    public function delete(Request $request, YadoStaff $yado_staff, $id): Response
-//    {
-//
-//        $form = $this->createForm(YadoStaffType::class, $yado_staff);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->getDoctrine()->getManager()->remove($id);
-//            $this->getDoctrine()->getManager()->flush();
-//            return $this->redirectToRoute('yado_staff');
-//        }
-//
-//
-//        return $this->render('yado_staff/edit.html.twig', [
-//            'yadostaffs' =>$yado_staff,
-//            'form' => $form->createView(),
-//
-//        ]);
-//    }
+    /**
+     * @Route("/{id}/delete", name="staff_delete",requirements={"id"="\d+"} ,methods={"DELETE"})
+     */
+    public function delete(Request $request, YadoStaff $yado_staff,YadoStaffRepository $yadoStaffRepository, $id): Response
+    {
+
+        $form = $this->createForm(YadoStaffType::class, $yado_staff);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->remove($yado_staff);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('yado_staff');
+        }
+
+
+        return $this->render('yado_staff/delete.html.twig', [
+            'yadostaffs' => $yadoStaffRepository->findBy([
+                'id' =>$id,
+            ]),
+            'form' => $form->createView()
+        ]);
+    }
 }

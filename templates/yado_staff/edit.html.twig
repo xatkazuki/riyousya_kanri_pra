@@ -17,6 +17,9 @@
         {{ form_row(form.taisya_at) }}
 
         <button class="btn">{{ button_label|default('Update') }}</button>
+        <div>
+            <input type="submit" id="task_delete" name="staff[delete]" value="delete" class="btn-primary btn">
+        </div>
         <div style="display: none;">
             {{ form_rest(form) }}
         </div>
