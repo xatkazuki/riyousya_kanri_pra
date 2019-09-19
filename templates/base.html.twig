@@ -8,7 +8,24 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div class="example-wrapper">
+        <header class="mb-4 ml-0">
+            {% block nav %}
+                <nav class="col-4">
+                    <ul class="nav justify-content-between">
+                        <li class="nav-item"><a class="nav-link border" href="{{ path('syukuhaku_index') }}">Syukuhaku list</a></li>
+                        <li class="nav-item"><a class="nav-link border" href="{{ path('riyousya_index') }}">Riyousha list</a></li>
+                        <li class="nav-item"><a class="nav-link border" href="/">Top</a></li>
+
+                    </ul>
+                </nav>
+            {% endblock %}
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+    </div>
         {% block javascripts %}{% endblock %}
     </body>
+
 </html>

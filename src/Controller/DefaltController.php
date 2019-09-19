@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaltController extends AbstractController
 {
     /**
-     * @Route("/defalt", name="defalt")
+     * @Route("/", name="defalt")
      */
     public function index()
     {
